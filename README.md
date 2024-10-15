@@ -22,8 +22,8 @@ Feedback and Contributions: We welcome feedback, suggestions, and contributions 
 Community Engagement: Join the conversation on relevant forums and social media platforms to discuss Nocoin™ and its implications.
 
 Links
-Whitepaper: Nocoin™ Whitepaper (replace with the actual link)
-GitHub Repository: Nocoin™ GitHub (replace with your actual GitHub link)
+Whitepaper: [Nocoin™ Whitepaper](https://github.com/0MNIP0TENTS/Nocoin/blob/main/Nocoin_Whitepaper.md)
+GitHub Repository: [Nocoin™ GitHub](https://github.com/0MNIP0TENTS/Nocoin)
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
