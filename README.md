@@ -8,7 +8,7 @@ Nocoin™ positions itself as the future of the blockchain economy, focusing on 
 - **Decentralized Governance**: Empowering stakeholders to participate in decision-making processes through a transparent governance framework.
 
 ## For More Information
-For technical details, visit our [GitHub repository](https://github.com/[0MNIP0TENTS]/nocoin).
+For technical details, visit our [GitHub repository](https://github.com/0MNIP0TENTS/nocoin).
 
 ## Getting Started
 1. Clone the repository: `git clone https://github.com/[YourUsername]/nocoin.git`
