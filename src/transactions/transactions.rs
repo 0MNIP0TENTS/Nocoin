@@ -14,6 +14,11 @@ pub struct SmartContract {
     pub state: Vec<u8>,
 }
 
+pub struct OracleData {
+    pub data: Vec<u8>,
+    pub signature: Vec<u8>,
+}
+
 pub fn create_transaction(sender: Vec<u8>, receiver: Vec<u8>, amount: u64, private_key: Vec<u8>) -> Transaction {
     let tx = Transaction {
         sender,
@@ -36,4 +41,9 @@ pub fn verify_transaction(tx: &Transaction, public_key: Vec<u8>) -> bool {
 pub fn execute_contract(contract: &SmartContract, input_data: Vec<u8>, executor_private_key: Vec<u8>) -> Vec<u8> {
     // Execute the smart contract securely
     quantum_vm::execute(contract, input_data, executor_private_key)
+}
+
+pub fn verify_oracle_data(oracle_data: &OracleData, public_key: Vec<u8>) -> bool {
+    // Verify oracle data using post-quantum signature verification
+    verify_signature(public_key, &oracle_data.data, oracle_data.signature.clone())
 }
