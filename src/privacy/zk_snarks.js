@@ -11,3 +11,8 @@ pub async fn verify_zk_proof(proof: &str, public_signals: &str) -> bool {
     let verification_key = std::fs::read_to_string("verification_key.json").unwrap();
     snarkjs::groth16::verify(&verification_key, public_signals, proof).await
 }
+
+pub fn generate_zk_stark_proof(data: &str) -> StarkProof {
+    // Generate a zk-STARK proof to ensure privacy with increased transparency
+    starkjs::generate_proof(data, "stark_circuit.json")
+}
