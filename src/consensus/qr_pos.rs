@@ -3,6 +3,7 @@
 pub struct Validator {
     pub public_key: Vec<u8>,   // Quantum-safe public key
     pub stake: u64,            // Amount staked by the validator
+    pub reputation_score: f64,  // Reputation score for consistent performance
 }
 
 pub struct Block {
@@ -25,4 +26,9 @@ pub fn validate_block(block: &Block, validators: &[Validator]) -> bool {
     } else {
         false
     }
+}
+
+pub fn update_validator_reputation(validator: &mut Validator, correct_validations: u64, uptime: f64) {
+    // Update reputation score based on performance metrics
+    validator.reputation_score = (correct_validations as f64 * 0.7) + (uptime * 0.3);
 }
