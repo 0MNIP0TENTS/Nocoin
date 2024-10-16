@@ -32,4 +32,3 @@ contract NocoinGovernance {
         return (proposal.description, proposal.voteCount);
     }
 }
-
