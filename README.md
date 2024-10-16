@@ -1,19 +1,20 @@
 # Nocoin™
 
-Nocoin™ positions itself as the future of the blockchain economy, focusing on security, speed, and accessibility. Designed to enable microtransactions and decentralized finance (DeFi), Nocoin™ aims to create an inclusive ecosystem that empowers users and developers alike.
+Nocoin™ is a cutting-edge cryptocurrency project designed to facilitate microtransactions and decentralized finance (DeFi) solutions. Our mission is to create an inclusive, secure, and user-friendly ecosystem powered by innovative technologies.
 
 ## Key Features
-- **Quantum-Resistant Consensus**: Utilizing Quantum-Resistant Proof of Stake (QR-PoS) to secure the network against quantum threats.
-- **Zero-Knowledge Proofs**: Ensuring user privacy and transaction confidentiality.
-- **Decentralized Governance**: Empowering stakeholders to participate in decision-making processes through a transparent governance framework.
-
-## For More Information
-For technical details, visit our [GitHub repository](https://github.com/0MNIP0TENTS/nocoin).
+- **Quantum-Resistant Consensus**: Our custom consensus mechanism protects against future quantum computing threats.
+- **Zero-Knowledge Proofs**: Maintain privacy and confidentiality for all transactions.
+- **Decentralized Governance**: Empowering users to have a voice in the decision-making process.
 
 ## Getting Started
-1. Clone the repository: `git clone https://github.com/[YourUsername]/nocoin.git`
+1. Clone the repository: `git clone https://github.com/0MNIP0TENTS/nocoin.git`
 2. Navigate to the directory: `cd nocoin`
-3. Follow the setup instructions in the `docs/user_guide.md` for detailed installation steps.
+3. Follow the setup instructions in the `docs/user_guide.md`.
+
+## More Information
+- [Whitepaper](whitepaper.md)
+- [Community Guidelines](docs/community_guidelines.md)
 
 ## License
-Nocoin™ is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+Nocoin™ is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
