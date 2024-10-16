@@ -52,3 +52,10 @@ pub fn calculate_reward(validator: &Validator) -> u64 {
     let base_reward = 100;
     (base_reward as f64 * (1.0 + validator.carbon_score / 100.0)) as u64
 }
+
+pub fn rotate_validators(validators: &mut Vec<Validator>) {
+    // AI-driven rotation logic to improve security and fairness
+    ai_module::evaluate_performance(validators);
+    validators.sort_by(|a, b| b.reputation_score.partial_cmp(&a.reputation_score).unwrap());
+    validators.truncate(MAX_VALIDATORS);
+}
