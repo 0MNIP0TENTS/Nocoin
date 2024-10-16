@@ -13,6 +13,19 @@ pub struct Block {
     pub timestamp: u64,
 }
 
+enum ConsensusMechanism {
+    QRPoS,
+    LightweightProof,
+}
+
+pub fn select_consensus_mechanism(network_load: u64, attack_detected: bool) -> ConsensusMechanism {
+    if attack_detected || network_load > THRESHOLD {
+        ConsensusMechanism::LightweightProof
+    } else {
+        ConsensusMechanism::QRPoS
+    }
+}
+
 pub fn select_validator(validators: &[Validator]) -> Option<&Validator> {
     // Quantum-safe random selection algorithm to pick a validator based on their stake
     let index = post_quantum_random(validators.len());
