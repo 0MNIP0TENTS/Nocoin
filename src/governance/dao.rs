@@ -21,3 +21,8 @@ pub fn create_proposal(description: &str) -> Proposal {
 pub fn vote_on_proposal(proposal_id: u64, vote: Vote) {
     update_vote_count(proposal_id, vote);
 }
+
+pub fn approve_fund_release(proposal: &TreasuryProposal) -> bool {
+    // Release funds if the proposal has sufficient votes
+    proposal.votes_for > proposal.votes_against
+}
