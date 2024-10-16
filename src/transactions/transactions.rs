@@ -47,3 +47,11 @@ pub fn verify_oracle_data(oracle_data: &OracleData, public_key: Vec<u8>) -> bool
     // Verify oracle data using post-quantum signature verification
     verify_signature(public_key, &oracle_data.data, oracle_data.signature.clone())
 }
+
+pub fn calculate_transaction_fee(network_load: u64) -> u64 {
+    // Calculate fee based on network load
+    if network_load > HIGH_LOAD_THRESHOLD {
+        return HIGH_FEE;
+    }
+    0 // Zero fee during low load
+}
