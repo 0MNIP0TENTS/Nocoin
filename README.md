@@ -1,20 +1,29 @@
 # Nocoin™
 
-Nocoin™ is a cutting-edge cryptocurrency project designed to facilitate microtransactions and decentralized finance (DeFi) solutions. Our mission is to create an inclusive, secure, and user-friendly ecosystem powered by innovative technologies.
+Nocoin™ is a groundbreaking cryptocurrency designed to revolutionize the digital value landscape by offering a cost-free solution for transactions. Unlike traditional cryptocurrencies, Nocoin™ eliminates mining costs, transaction fees, and energy consumption, paving the way for a post-scarcity economic model where value flows freely.
 
-## Key Features
-- **Quantum-Resistant Consensus**: Our custom consensus mechanism protects against future quantum computing threats.
-- **Zero-Knowledge Proofs**: Maintain privacy and confidentiality for all transactions.
-- **Decentralized Governance**: Empowering users to have a voice in the decision-making process.
+## Features
+
+- **Cost-Free Transactions**: No transaction fees, enabling micropayments and seamless value transfer.
+- **Post-Quantum Security**: Integrates post-quantum cryptographic algorithms to secure the network against future threats.
+- **Zero-Knowledge Proofs**: Ensures transaction privacy while maintaining transparency.
+- **Decentralized Governance**: Empowering users to participate in network decisions via a DAO.
+- **Cross-Chain Compatibility**: Seamlessly interact with other blockchains like Ethereum.
+- **Layer 2 Scaling**: Implements state channels for high throughput and low latency transactions.
 
 ## Getting Started
-1. Clone the repository: `git clone https://github.com/0MNIP0TENTS/nocoin.git`
-2. Navigate to the directory: `cd nocoin`
-3. Follow the setup instructions in the `docs/user_guide.md`.
 
-## More Information
-- [Whitepaper](whitepaper.md)
-- [Community Guidelines](docs/community_guidelines.md)
+### Prerequisites
 
-## License
-Nocoin™ is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- Rust (version 1.60 or later)
+- Cargo
+- Docker (optional, for containerized deployment)
+- Kubernetes (optional, for orchestration)
+
+### Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/0MNIP0TENTS/Nocoin.git
+   cd Nocoin

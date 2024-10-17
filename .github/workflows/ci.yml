@@ -1,1 +1,29 @@
+# .github/workflows/ci.yml
 
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: Install Dependencies
+        run: cargo install --path .
+      - name: Run Clippy
+        run: cargo clippy -- -D warnings
+      - name: Run Tests
+        run: cargo test -- --test-threads=1
+      - name: Run Benchmarks
+        run: cargo bench

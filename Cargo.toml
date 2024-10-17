@@ -1,0 +1,13 @@
+[package]
+name = "nocoin"
+version = "0.1.0"
+authors = ["Sam Pearson <omni@nwrk.co.uk>"]
+edition = "2021"
+
+[dependencies]
+rand = "0.8"
+rayon = "1.5"
+tokio = { version = "1", features = ["full"] }
+
+[dev-dependencies]
+criterion = "0.4"

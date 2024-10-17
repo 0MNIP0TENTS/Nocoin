@@ -1,0 +1,29 @@
+# k8s-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nocoin-node
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nocoin
+  template:
+    metadata:
+      labels:
+        app: nocoin
+    spec:
+      containers:
+      - name: nocoin
+        image: nocoin:latest
+        ports:
+        - containerPort: 30303
+        - containerPort: 30304
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        env:
+        - name: NODE_ID
+          value: "node1"
