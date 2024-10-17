@@ -1,61 +1,54 @@
-// qr_pos.rs
-
 pub struct Validator {
-    pub public_key: Vec<u8>,   // Quantum-safe public key
-    pub stake: u64,            // Amount staked by the validator
-    pub reputation_score: f64,  // Reputation score for consistent performance
-    pub carbon_score: f64,  // Carbon efficiency score
+    pub public_key: Vec<u8>,
+    pub stake: u64,
+    pub reputation_score: f64,
+    pub carbon_score: f64,
+    pub slashed: bool,
 }
 
 pub struct Block {
     pub previous_hash: String,
     pub transactions: Vec<Transaction>,
-    pub validator_signature: Vec<u8>,  // Signature from validator
+    pub validator_signature: Vec<u8>,
     pub timestamp: u64,
 }
 
-enum ConsensusMechanism {
-    QRPoS,
-    LightweightProof,
-}
-
-pub fn select_consensus_mechanism(network_load: u64, attack_detected: bool) -> ConsensusMechanism {
-    if attack_detected || network_load > THRESHOLD {
-        ConsensusMechanism::LightweightProof
-    } else {
-        ConsensusMechanism::QRPoS
-    }
-}
-
 pub fn select_validator(validators: &[Validator]) -> Option<&Validator> {
-    // Quantum-safe random selection algorithm to pick a validator based on their stake
-    let index = post_quantum_random(validators.len());
-    validators.get(index)
-}
+    let total_stake: u64 = validators.iter().filter(|v| !v.slashed).map(|v| v.stake).sum();
+    let mut rng = rand::thread_rng();
+    let random_value = rng.gen_range(0..total_stake);
 
-pub fn validate_block(block: &Block, validators: &[Validator]) -> bool {
-    // Ensure the block's signature is valid and signed by an eligible validator
-    if let Some(validator) = get_validator_by_signature(&block.validator_signature, validators) {
-        verify_signature(&validator.public_key, block)
-    } else {
-        false
+    let mut cumulative_stake = 0;
+    for validator in validators.iter().filter(|v| !v.slashed) {
+        cumulative_stake += validator.stake;
+        if cumulative_stake >= random_value {
+            return Some(validator);
+        }
     }
+    None
 }
 
-pub fn update_validator_reputation(validator: &mut Validator, correct_validations: u64, uptime: f64) {
-    // Update reputation score based on performance metrics
-    validator.reputation_score = (correct_validations as f64 * 0.7) + (uptime * 0.3);
+pub fn validate_and_reward_block(block: &Block, validators: &mut [Validator], eco_factor: f64) -> bool {
+    if let Some(validator) = get_validator_by_signature(&block.validator_signature, validators) {
+        if verify_signature(&validator.public_key, &block.hash(), &block.validator_signature) {
+            reward_validator(validator, eco_factor);
+            return true;
+        }
+    }
+    false
 }
 
-pub fn calculate_reward(validator: &Validator) -> u64 {
-    // Calculate reward based on carbon efficiency
-    let base_reward = 100;
-    (base_reward as f64 * (1.0 + validator.carbon_score / 100.0)) as u64
+pub fn reward_validator(validator: &mut Validator, eco_factor: f64) {
+    let base_reward: u64 = 100;
+    let carbon_incentive = (eco_factor * validator.carbon_score * 0.1) as u64;
+    let final_reward = base_reward + carbon_incentive;
+    validator.stake += final_reward;
+    validator.reputation_score += 0.05;
 }
 
-pub fn rotate_validators(validators: &mut Vec<Validator>) {
-    // AI-driven rotation logic to improve security and fairness
-    ai_module::evaluate_performance(validators);
-    validators.sort_by(|a, b| b.reputation_score.partial_cmp(&a.reputation_score).unwrap());
-    validators.truncate(MAX_VALIDATORS);
+pub fn slash_validator(validator: &mut Validator, reason: &str) {
+    validator.slashed = true;
+    validator.stake /= 2;
+    validator.reputation_score -= 0.5;
+    println!("Validator {} slashed for: {}", validator.public_key.to_hex(), reason);
 }

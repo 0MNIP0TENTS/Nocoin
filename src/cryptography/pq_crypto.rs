@@ -1,21 +1,27 @@
-// pq_crypto.rs
-
-extern crate oqs;  // Open Quantum Safe library
-
-pub fn generate_keypair() -> (Vec<u8>, Vec<u8>) {
-    // Use Kyber512 for keypair generation, offering post-quantum security
-    let kem = oqs::kem::Kem::new(oqs::kem::Algorithm::Kyber512).unwrap();
-    kem.keypair().unwrap()
+pub fn generate_post_quantum_keypair(algorithm: PQAlgorithm) -> (Vec<u8>, Vec<u8>) {
+    match algorithm {
+        PQAlgorithm::Dilithium => dilithium2::keypair(),
+        PQAlgorithm::Falcon => falcon::keypair(),
+    }
 }
 
-pub fn sign_message(private_key: Vec<u8>, message: &[u8]) -> Vec<u8> {
-    // Sign message using a lattice-based scheme
-    let sig_alg = oqs::sig::Sig::new(oqs::sig::Algorithm::Dilithium2).unwrap();
-    sig_alg.sign(message, &private_key).unwrap()
+pub fn sign_message(private_key: &[u8], message: &[u8], nonce: &[u8]) -> Vec<u8> {
+    let mut message_with_nonce = vec![];
+    message_with_nonce.extend_from_slice(message);
+    message_with_nonce.extend_from_slice(nonce);
+    dilithium2::sign(&message_with_nonce, private_key)
 }
 
-pub fn verify_signature(public_key: Vec<u8>, message: &[u8], signature: Vec<u8>) -> bool {
-    // Verify signature for authenticity and integrity
-    let sig_alg = oqs::sig::Sig::new(oqs::sig::Algorithm::Dilithium2).unwrap();
-    sig_alg.verify(message, &signature, &public_key).is_ok()
+pub fn verify_signature(public_key: &[u8], message: &[u8], signature: &[u8], nonce: &[u8]) -> bool {
+    let mut message_with_nonce = vec![];
+    message_with_nonce.extend_from_slice(message);
+    message_with_nonce.extend_from_slice(nonce);
+    dilithium2::verify(&message_with_nonce, signature, public_key).is_ok()
+}
+
+pub fn generate_nonce() -> Vec<u8> {
+    let mut rng = rand::thread_rng();
+    let mut nonce = [0u8; 16];
+    rng.fill_bytes(&mut nonce);
+    nonce.to_vec()
 }

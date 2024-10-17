@@ -91,21 +91,7 @@ Nocoin™ provides businesses with quantum-resistant, high-speed payment solutio
 
 ---
 
-## **8. Comparison with Other Cryptocurrencies**
-
-| **Feature**               | **Nocoin™**                          | **Bitcoin**                           | **Ethereum**                       | **Litecoin**                        |
-|---------------------------|--------------------------------------|---------------------------------------|------------------------------------|-------------------------------------|
-| **Cryptographic Security** | Post-quantum resistant               | Vulnerable to quantum attacks         | Vulnerable to quantum attacks      | Vulnerable to quantum attacks       |
-| **Consensus Mechanism**    | Quantum-Resistant PoS                | Proof of Work (PoW)                   | Proof of Stake (PoS)               | Proof of Work (PoW)                 |
-| **Transaction Speed**      | 1 second                             | ~10 minutes                           | ~15 seconds                        | ~2.5 minutes                        |
-| **Energy Consumption**     | 0.001 kWh per transaction            | ~300 kWh per transaction              | ~100 kWh per transaction           | ~0.02 kWh per transaction           |
-| **Smart Contracts**        | Limited (if any)                     | None                                  | Supported (Turing complete)        | Limited (basic scripting)           |
-| **Scalability**            | High, built-in sharding              | Limited, Layer 2 solutions required   | High, Layer 2 solutions emerging   | Moderate, supported by SegWit       |
-| **Privacy Features**       | zk-SNARKs, full anonymity            | Pseudonymous                          | Transparent, some privacy options  | Pseudonymous                        |
-
----
-
-## **9. Roadmap**
+## **8. Roadmap**
 
 - **Phase 1**: Development of the post-quantum cryptographic framework and QR-PoS consensus model.
 - **Phase 2**: Launch of the mainnet, with a focus on microtransactions and remittances.
@@ -114,10 +100,10 @@ Nocoin™ provides businesses with quantum-resistant, high-speed payment solutio
 
 ---
 
-## **10. Conclusion**
+## **9. Conclusion**
 
 Nocoin™ transcends the conventional definition of cryptocurrency, representing a robust solution for the secure, scalable future of digital finance. By integrating quantum resistance, zero transaction fees, and high energy efficiency, Nocoin™ is poised to revolutionize the blockchain landscape.
 
-For further technical insights and updates, visit our [GitHub repository](https://github.com/[YourUsername]/nocoin).
+For further technical insights and updates, visit our [GitHub repository](https://github.com/0MNIP0TENTS/nocoin).
 
 ---
