@@ -16,11 +16,11 @@ pub fn verify_zk_proof(proof: &ZKProof, disclosed: bool) -> bool {
     }
 }
 
-pub fn batch_transactions_for_rollup(transactions: Vec<Transaction>) -> ZKRollup {
-    let proofs: Vec<ZKProof> = transactions.into_iter().map(|tx| generate_zk_proof(&tx, false)).collect();
-    zk_rollup::batch_proofs(proofs)
-}
+// Parallelized ZK proof generation for improved performance
+use rayon::prelude::*;  // Parallel processing library
 
-pub fn verify_zk_rollup(rollup: &ZKRollup) -> bool {
-    zk_rollup::verify_rollup(rollup)
+pub fn generate_zk_proofs_parallel(transactions: &[Transaction], disclose: bool) -> Vec<ZKProof> {
+    transactions.par_iter()
+        .map(|transaction| generate_zk_proof(transaction, disclose))
+        .collect()
 }
